@@ -1,0 +1,23 @@
+<mat-toolbar>
+  <button mat-icon-button class="border-0" [routerLink]="['/listado']" routerLinkActive="router-link-active" >
+    <mat-icon aria-hidden="false" class="float-end" fontIcon="navigate_before"></mat-icon>
+  </button>
+  <span class="ms-5">{{titulo}}</span>
+</mat-toolbar>
+<mat-selection-list #shoes [multiple]="false">
+  <ng-container *ngFor="let item of listadoInd">
+    <mat-list-option>
+      <div class="row">
+        <div class="col" style="white-space: nowrap;">
+          {{item.Fecha | date: 'fullDate'}}
+        </div>
+        <div class="col text-end">
+          {{item.Valor}}
+        </div>
+      </div>
+    </mat-list-option>
+    <mat-divider></mat-divider>
+  </ng-container>
+</mat-selection-list>
+
+<div [innerHTML]="errorHtml"></div>

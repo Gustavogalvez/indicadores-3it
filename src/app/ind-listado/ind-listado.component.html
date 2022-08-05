@@ -1,0 +1,10 @@
+<mat-selection-list #shoes [multiple]="false">
+  <ng-container *ngFor="let item of indicadores">
+    <mat-list-option [routerLink]="['/indicador', item.key]" routerLinkActive="router-link-active" >
+      <div mat-line>{{item.nombre}}
+        <mat-icon aria-hidden="false" class="float-end" fontIcon="navigate_next"></mat-icon>
+      </div>
+    </mat-list-option>
+    <mat-divider></mat-divider>
+  </ng-container>
+</mat-selection-list>
