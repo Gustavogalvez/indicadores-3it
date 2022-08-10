@@ -4,6 +4,7 @@
   </button>
   <span class="ms-5">{{titulo}}</span>
 </mat-toolbar>
+<mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
 <mat-selection-list #shoes [multiple]="false">
   <ng-container *ngFor="let item of listadoInd">
     <mat-list-option>

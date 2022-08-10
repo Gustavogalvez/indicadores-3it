@@ -4,12 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'listado',
-    loadChildren: () => import('./ind-listado/ind-listado.module').then(m => m.IndListadoModule)
+    loadChildren: () => import('./components/ind-listado/ind-listado.module').then(m => m.IndListadoModule)
   },
   {
     path: 'indicador',
-    loadChildren: () => import('./indicador/indicador.module').then(m => m.IndicadorModule)
+    loadChildren: () => import('./components/indicador/indicador.module').then(m => m.IndicadorModule)
   },
+  {
+    path: '**',
+    redirectTo: '/listado'
+  }
 ];
 
 @NgModule({
