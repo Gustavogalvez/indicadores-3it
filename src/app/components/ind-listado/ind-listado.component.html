@@ -1,10 +1,22 @@
-<mat-selection-list #shoes [multiple]="false">
+<mat-list #shoes>
   <ng-container *ngFor="let item of indicadores">
-    <mat-list-option [routerLink]="['/indicador', item.key]" routerLinkActive="router-link-active" >
-      <div mat-line>{{item.nombre}}
-        <mat-icon aria-hidden="false" class="float-end" fontIcon="navigate_next"></mat-icon>
+    <mat-list-item>
+      <div class="container-fluid h-100 align-middle">
+        <div class="row h-100">
+          <button [routerLink]="['/indicador', item.key]" mat-button class="col align-items-center d-flex justify-content-center">
+            {{item.nombre}}
+          </button>
+          <div class="col align-items-center d-flex flex-row-reverse">
+            <button [routerLink]="['/indicador', item.key]" mat-icon-button aria-label="Consultar Indicador">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+            <button color="primary" mat-icon-button aria-label="Más información">
+              <mat-icon>error_outline</mat-icon>
+            </button>
+          </div>
+        </div>
       </div>
-    </mat-list-option>
+    </mat-list-item>
     <mat-divider></mat-divider>
   </ng-container>
-</mat-selection-list>
+</mat-list>

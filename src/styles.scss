@@ -2,3 +2,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import "~bootstrap/scss/bootstrap-utilities";
+
+//Generate utilites for Cursor
+$utilities: map-merge(
+  $utilities,
+  (
+    "cursor": (
+      property: cursor,
+      values: auto default pointer wait text move help not-allowed
+    ),
+  )
+);

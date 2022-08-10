@@ -6,6 +6,8 @@ import { IndListadoComponent } from './ind-listado.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { MatIconModule } from '@angular/material/icon';
     IndListadoRoutingModule,
     MatListModule,
     MatDividerModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatRippleModule
   ]
 })
 export class IndListadoModule { }
