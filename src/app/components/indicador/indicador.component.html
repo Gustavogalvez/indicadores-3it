@@ -13,7 +13,12 @@
           {{item.Fecha | date: 'fullDate'}}
         </div>
         <div class="col text-end">
-          {{item.Valor}}
+          <span *ngIf="indicador?.currency">
+            {{item.Valor | currency:indicador.currency}}
+          </span>
+          <span *ngIf="!indicador?.currency">
+            {{item.Valor}}
+          </span>
         </div>
       </div>
     </mat-list-option>

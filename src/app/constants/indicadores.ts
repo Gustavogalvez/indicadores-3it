@@ -1,13 +1,19 @@
-export const INDICADORES = [
+import { Iindicador } from "../models/indicador.model";
+
+const INDICADORES: Array<Iindicador> = [
   {
     nombre: 'Dólar',
     subtitulo: 'Dólar',
-    key: 'dolar'
+    key: 'dolar',
+    currency: 'USD',
+    replaceDot: true
   },
   {
     nombre: 'Euro',
     subtitulo: 'Euro',
-    key: 'euro'
+    key: 'euro',
+    currency: 'EUR',
+    replaceDot: true
   },
   {
     nombre: 'IPC',
@@ -17,11 +23,17 @@ export const INDICADORES = [
   {
     nombre: 'UF',
     subtitulo: 'UF',
-    key: 'uf'
+    key: 'uf',
+    currency: 'CLP',
+    replaceDot: true
   },
   {
     nombre: 'UTM',
     subtitulo: 'UTM',
-    key: 'utm'
+    key: 'utm',
+    currency: 'CLP',
+    replaceDot: true
   }
 ];
+
+export default INDICADORES;

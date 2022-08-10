@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { forkJoin } from 'rxjs';
+import { Iindicador } from 'src/app/models/indicador.model';
 import { IndicadoresService } from '../../services/indicadores.service';
 
 @Component({
@@ -8,6 +10,8 @@ import { IndicadoresService } from '../../services/indicadores.service';
   styleUrls: ['./indicador.component.scss']
 })
 export class IndicadorComponent implements OnInit {
+  indicador!: Iindicador;
+
   listadoInd: any;
   titulo!: string;
 
@@ -20,6 +24,9 @@ export class IndicadorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe(({ indicador }) => {
+      this.indicador = indicador;
+    });
     this.route.params.subscribe(({key}) => {
       if (key) {
         this.obtenerIndicadores(key);
@@ -33,16 +40,7 @@ export class IndicadorComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.indicadoresService.obtenerIndicador(key).subscribe(({titulo, array}) => {
-      this.loading = false;
-      this.listadoInd = array;
-      this.titulo = titulo;
-    }, err => {
-      this.loading = false;
-      console.log(err);
-      this.errorHtml = err.error.text;
-    });
-    this.indicadoresService.obtenerIndicador(key).subscribe({
+    this.indicadoresService.obtenerIndicador(key, this.indicador?.replaceDot || false).subscribe({
       next: ({titulo, array}) => {
         this.listadoInd = array;
         this.titulo = titulo;

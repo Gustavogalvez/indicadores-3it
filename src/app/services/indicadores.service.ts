@@ -13,10 +13,23 @@ export class IndicadoresService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerIndicador(key: string) {
+  obtenerIndicador(key: string, replaceDot: boolean) {
     key = key.toLowerCase();
     return this.http.get(this.obtenerUrl(key)).pipe(
-      map((ind: any) => {return {array: ind[Object.keys(ind)[0]], titulo: Object.keys(ind)[0]}})
+      map((ind: any) => {
+        let indicadores: Array<any> = ind[Object.keys(ind)[0]] || [];
+        indicadores = indicadores.map(({Fecha, Valor}) => {
+          if (replaceDot) {
+            Valor = Valor.replace(',', '.');
+            Valor = Valor.replace('.', '');
+          }
+          return { Fecha, Valor }
+        });
+        return {
+          array: indicadores,
+          titulo: Object.keys(ind)[0]
+        };
+      })
     )
   }
 

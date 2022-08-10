@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { INDICADORES } from '../../constants/indicadores';
+import INDICADORES from '../../constants/indicadores';
 
 @Component({
   selector: 'app-ind-listado',

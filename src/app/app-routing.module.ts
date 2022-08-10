@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IndicadorResolver } from './resolvers/indicador.resolver';
 
 const routes: Routes = [
   {
