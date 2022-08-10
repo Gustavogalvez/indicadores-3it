@@ -13,6 +13,19 @@ export class IndicadoresService {
 
   constructor(private http: HttpClient) { }
 
+  obtenerIndicadorDetalle(key: string) {
+    key = key.toLowerCase();
+    return this.http.get(this.obtenerUrl(key)).pipe(
+      map((ind: any) => {
+        let indicadores: Array<any> = ind[Object.keys(ind)[0]] || [];
+        return {
+          array: indicadores,
+          titulo: Object.keys(ind)[0]
+        };
+      })
+    )
+  }
+
   obtenerIndicador(key: string, replaceDot: boolean) {
     key = key.toLowerCase();
     return this.http.get(this.obtenerUrl(key)).pipe(

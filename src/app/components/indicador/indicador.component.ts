@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Iindicador } from 'src/app/models/indicador.model';
 import { IndicadoresService } from '../../services/indicadores.service';
@@ -20,7 +20,8 @@ export class IndicadorComponent implements OnInit {
 
   constructor(
     private indicadoresService: IndicadoresService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +48,7 @@ export class IndicadorComponent implements OnInit {
       },
       error: (err) => {
         console.warn(err);
-        this.errorHtml = err.error.text;
+        this.router.navigate(['/listado']);
       },
       complete: () => {this.loading = false}
     });
