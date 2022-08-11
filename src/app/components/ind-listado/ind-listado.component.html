@@ -1,4 +1,4 @@
-<mat-list #shoes>
+<mat-list>
   <ng-container *ngFor="let item of indicadores">
     <mat-list-item>
       <div class="container-fluid h-100 align-middle">
@@ -10,7 +10,7 @@
             <button [routerLink]="['/indicador', item.key]" mat-icon-button aria-label="Consultar Indicador">
               <mat-icon>navigate_next</mat-icon>
             </button>
-            <button color="primary" mat-icon-button aria-label="Más información">
+            <button [routerLink]="['/indicador-detalle', item.key]" color="primary" mat-icon-button aria-label="Más información">
               <mat-icon>error_outline</mat-icon>
             </button>
           </div>

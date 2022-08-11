@@ -6,6 +6,10 @@ import { IndicadorDetalleComponent } from './indicador-detalle.component';
 const routes: Routes = [
   {
     path: ':key', component: IndicadorDetalleComponent, resolve: [IndicadorResolver]
+  },
+  {
+    path: '**',
+    redirectTo: '/listado'
   }
 ];
 

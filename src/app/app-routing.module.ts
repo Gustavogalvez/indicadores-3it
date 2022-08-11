@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/indicador/indicador.module').then(m => m.IndicadorModule)
   },
   {
+    path: 'indicador-detalle',
+    loadChildren: () => import('./components/indicador-detalle/indicador-detalle.module').then(m => m.IndicadorDetalleModule)
+  },
+  {
     path: '**',
     redirectTo: '/listado'
   }

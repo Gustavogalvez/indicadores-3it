@@ -1,29 +1,33 @@
 <mat-toolbar>
-  <button mat-icon-button class="border-0" [routerLink]="['/listado']" >
+  <button mat-icon-button class="border-0" routerLink="../" >
     <mat-icon aria-hidden="false" class="float-end" fontIcon="navigate_before"></mat-icon>
   </button>
-  <span class="ms-5">{{titulo}}</span>
+  <span class="mx-auto">{{titulo}}</span>
+
+  <button mat-icon-button class="border-0" [routerLink]="['/indicador-detalle', indicador.key]">
+    <mat-icon>error_outline</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
-<mat-selection-list #shoes [multiple]="false">
+<mat-list>
   <ng-container *ngFor="let item of listadoInd">
-    <mat-list-option>
-      <div class="row">
+    <mat-list-item>
+      <div class="row w-100">
         <div class="col" style="white-space: nowrap;">
           {{item.Fecha | date: 'fullDate'}}
         </div>
         <div class="col text-end">
           <span *ngIf="indicador?.currency">
-            {{item.Valor | currency:indicador.currency}}
+            {{item.Valor | currency:indicador.currency:'symbol':(indicador.key === 'utm' ? '1.0' : '1.2-2')}}
           </span>
           <span *ngIf="!indicador?.currency">
             {{item.Valor}}
           </span>
         </div>
       </div>
-    </mat-list-option>
+    </mat-list-item>
     <mat-divider></mat-divider>
   </ng-container>
-</mat-selection-list>
+</mat-list>
 
 <div [innerHTML]="errorHtml"></div>

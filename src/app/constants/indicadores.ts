@@ -5,14 +5,14 @@ const INDICADORES: Array<Iindicador> = [
     nombre: 'Dólar',
     subtitulo: 'Dólar',
     key: 'dolar',
-    currency: 'USD',
+    currency: 'CLP',
     replaceDot: true
   },
   {
     nombre: 'Euro',
     subtitulo: 'Euro',
     key: 'euro',
-    currency: 'EUR',
+    currency: 'CLP',
     replaceDot: true
   },
   {

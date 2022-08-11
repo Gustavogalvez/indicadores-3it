@@ -15,15 +15,39 @@ export class IndicadoresService {
 
   obtenerIndicadorDetalle(key: string) {
     key = key.toLowerCase();
-    return this.http.get(this.obtenerUrl(key)).pipe(
+    return this.http.get(this.obtenerUrlDetalle(key)).pipe(
       map((ind: any) => {
         let indicadores: Array<any> = ind[Object.keys(ind)[0]] || [];
+        indicadores = indicadores.map(({Fecha, Valor}) => {
+          Valor = Valor.replace('.', '');
+          Valor = Valor.replace(',', '.');
+          return { Fecha, Valor }
+        });
+        indicadores = indicadores.filter(ind => new Date(Date.now()) > new Date(ind.Fecha));
         return {
           array: indicadores,
           titulo: Object.keys(ind)[0]
         };
       })
     )
+  }
+
+  obtenerUrlDetalle(key: string): string {
+    let date = new Date(Date.now())
+    let fechaMesesPasados = new Date(date.setMonth(date.getMonth()-12));
+    date = new Date(Date.now())
+    let fechaDiasPasados = new Date(date.setDate(date.getDate()-11));
+
+    let url!: string;
+
+    if (key === 'uf' || key === 'euro' ||  key === 'dolar') {
+      url = `${this.apiUrl}${key}/posteriores/${formatDate(fechaDiasPasados, 'YYYY', 'es-CL')}/${formatDate(fechaDiasPasados, 'MM', 'es-CL')}/dias/${formatDate(fechaDiasPasados, 'dd', 'es-CL')}?apikey=${this.apiKey}&formato=json`
+    } else if (key === 'ipc' || key === 'utm') {
+      url = `${this.apiUrl}${key}/posteriores/${formatDate(fechaMesesPasados, 'YYYY', 'es-CL')}/${formatDate(fechaMesesPasados, 'MM', 'es-CL')}?apikey=${this.apiKey}&formato=json`
+    }
+
+
+    return url;
   }
 
   obtenerIndicador(key: string, replaceDot: boolean) {
@@ -33,8 +57,8 @@ export class IndicadoresService {
         let indicadores: Array<any> = ind[Object.keys(ind)[0]] || [];
         indicadores = indicadores.map(({Fecha, Valor}) => {
           if (replaceDot) {
-            Valor = Valor.replace(',', '.');
             Valor = Valor.replace('.', '');
+            Valor = Valor.replace(',', '.');
           }
           return { Fecha, Valor }
         });

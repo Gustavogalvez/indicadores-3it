@@ -1,1 +1,35 @@
-<p>indicador-detalle works!</p>
+<mat-toolbar>
+  <button mat-icon-button class="border-0" routerLink="../" >
+    <mat-icon aria-hidden="false" class="float-end" fontIcon="navigate_before"></mat-icon>
+  </button>
+  <span class="mx-auto">{{titulo}}</span>
+</mat-toolbar>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-8 mx-auto text-center" *ngIf="lastIndicador?.Valor">
+      <h1 *ngIf="indicador?.currency">
+        {{lastIndicador.Valor | currency:indicador.currency:'symbol':(indicador.key === 'utm' ? '1.0' : '1.2-2')}}
+      </h1>
+      <h1 *ngIf="!indicador?.currency">
+        {{lastIndicador.Valor}}
+      </h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="text-start" scope="row">Nombre</th>
+            <td class="text-end">{{titulo}}</td>
+          </tr>
+          <tr>
+            <th class="text-start" scope="row">Fecha</th>
+            <td class="text-end">{{lastIndicador.Fecha | date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-md-8 mx-auto">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+</div>
